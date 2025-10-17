@@ -5,17 +5,23 @@ import java.util.stream.Collectors;
 public class CalculateLongestPath {
 
 	public static void main(String[] args) {
-		Vertex startVertex = new Vertex(1L);
+		long id = 1L;
+		Vertex v1 = new Vertex(id++);
+		Vertex v2_1 = new Vertex(id++);
+		Vertex v2_2 = new Vertex(id++);
+		Vertex v3 = new Vertex(id++);
+		
 		List<Edge> allEdges = new ArrayList<Edge>();
+		allEdges.add(new Edge(v1, v2_1));
+		allEdges.add(new Edge(v1, v2_2));
+		allEdges.add(new Edge(v2_2, v3));
+		
 		//Given a DAG and a vertex, calculate the longest directed path from that vertex
-		
-		processVertex(0, startVertex, allEdges);
-		
-		System.out.println("Longest directed path:" + processVertex(0, startVertex, allEdges));
+		System.out.println("Longest directed path:" + processVertex(0, v1, allEdges));
 	}
 	
 	private static List<Edge> findEdges(List<Edge> allEdges, Vertex startVertex) {
-		//Find edges
+		//Find edges starting from the given vertex
 		return allEdges.stream().filter(e -> e.getFrom() == startVertex).collect(Collectors.toList());
 	}
 	
