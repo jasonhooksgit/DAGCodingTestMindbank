@@ -22,7 +22,7 @@ public class CalculateLongestPath {
 	
 	private static List<Edge> findEdges(List<Edge> allEdges, Vertex startVertex) {
 		//Find edges starting from the given vertex
-		return allEdges.stream().filter(e -> e.getFrom() == startVertex).collect(Collectors.toList());
+		return allEdges.stream().filter(e -> e != null).filter(e -> e.getFrom() == startVertex).collect(Collectors.toList());
 	}
 	
 	private static int processVertex(int currentPath, Vertex vertex, List<Edge> allEdges) {
